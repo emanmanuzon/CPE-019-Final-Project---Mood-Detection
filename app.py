@@ -19,7 +19,7 @@ if file is not None:
     face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
     # Read the uploaded image
-    image = cv2.imread('file')
+    image = cv2.imread(file)
 
     # Convert the image to grayscale
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
