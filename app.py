@@ -65,7 +65,7 @@ if file is not None:
 
     if rois:
         model = load_model()
-        for (x, y, w, h)roi in zip(faces, rois):
+        for (x, y, w, h),roi in zip(faces, rois):
             prediction = import_and_predict(roi, model)
             label = emotion_labels[prediction.argmax()]
             label_position = (x, y - 10)
