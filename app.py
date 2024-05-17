@@ -2,7 +2,7 @@ import streamlit as st
 import tensorflow as tf
 from keras.models import load_model
 
-model = load_model('CNN_Model_7.h5')
+model = load_model('model (1).h5')
 st.write("""
 # Weather Detection System"""
 )
