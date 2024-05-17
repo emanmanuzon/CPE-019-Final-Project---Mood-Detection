@@ -9,5 +9,5 @@ def load_model():
 st.write("""
 # Mood Classifier"""
 )
-file=st.file_uploader("Choose photo from the compu",type=["jpg","png"])
+file=st.file_uploader("Choose photo from the computer",type=["jpg","png"])
 
