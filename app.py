@@ -19,11 +19,11 @@ if file is not None:
 
     
 
-    model = load_model('emotion_model1.h5')
+    model = load_model('CNN_Model_7')
 
     image_data=Image.open(file)
     st.image(image_data, channels="BGR", caption='Original Image')
-    size=(48,48)
+    size=(100,100)
     image=ImageOps.fit(image_data,size)
     img=np.asarray(image)
     img_reshape=img[np.newaxis,...]
