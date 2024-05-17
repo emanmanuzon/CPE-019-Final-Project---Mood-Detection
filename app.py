@@ -21,8 +21,8 @@ if file is not None:
 
     model = load_model('model (1).h5')
 
-    image=Image.open(file)
-    st.image(image, channels="BGR", caption='Original Image')
+    image_data=Image.open(file)
+    st.image(image_data, channels="BGR", caption='Original Image')
     size=(48,48)
     image=ImageOps.fit(image_data,size)
     img=np.asarray(image)
