@@ -6,6 +6,8 @@ from PIL import Image, ImageOps
 from tensorflow import keras
 from keras.models import load_model
 
+@st.cache_data(experimental_allow_widgets=True)
+
 st.write("""
 # Mood Classifier
 """)
