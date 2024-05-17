@@ -58,14 +58,14 @@ if file is not None:
     st.image(image, channels="BGR", caption='Original Image')
 
     # Detect faces in the image
-    image_with_faces, num_faces, rois = detect_faces(image)
+    image_with_faces, faces, rois = detect_faces(image)
 
     # Display the image with detected faces
     st.image(image_with_faces, channels="BGR", caption=f'Image with {num_faces} face(s) detected')
 
     if rois:
         model = load_model()
-        for (x, y, w, h), roi in zip(faces, rois):
+        for (x, y, w, h)roi in zip(faces, rois):
             prediction = import_and_predict(roi, model)
             label = emotion_labels[prediction.argmax()]
             label_position = (x, y - 10)
