@@ -24,7 +24,7 @@ if file is not None:
     face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     image_data=Image.open(file)
     st.image(image_data, channels="BGR", caption='Original Image')
-    size=(100,100)
+    size=(48,48)
     image=ImageOps.fit(image_data,size)
     img=np.asarray(image)
     img_reshape=img[np.newaxis,...]
