@@ -24,9 +24,9 @@ if file is not None:
 
     model = load_model('model (1).h5')
 
-    cv2.resize(gray_image, (48, 48), interpolation=cv2.INTER_AREA)
-    img=np.asarray(roi_gray)
-    img_reshape=img[np.newaxis,...]
+    img = cv2.resize(gray_image, (48, 48), interpolation=cv2.INTER_AREA)
+    img_np = np.asarray(img)
+    img_reshape=img_np[np.newaxis,...]
     prediction = model.predict(img_reshape)
 
 
