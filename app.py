@@ -8,7 +8,8 @@ from keras.models import model_from_json
 from keras.preprocessing.image import img_to_array
 
 
-mood_dict = {0:'angry', 1 :'happy', 2: 'neutral', 3:'sad'}
+# load model
+emotion_dict = {0:'angry', 1 :'happy', 2: 'neutral', 3:'sad', 4: 'surprise'}
 # load json and create model
 json_file = open('emotion_model1.json', 'r')
 loaded_model_json = json_file.read()
