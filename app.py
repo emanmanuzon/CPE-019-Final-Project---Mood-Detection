@@ -16,7 +16,7 @@ emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surpri
 
 if file is not None:
     # Load the pre-trained face detector
-    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+    face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
     # Read the uploaded image
     image = cv2.imread('file')
