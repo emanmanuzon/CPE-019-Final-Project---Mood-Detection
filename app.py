@@ -41,7 +41,7 @@ if file is not None:
 
     if rois:
         # Load the pre-trained emotion classifier model
-        model = tf.keras.models.load_model('model (1).h5')
+        model = load_model('model (1).h5')
 
         # Make predictions for each detected face
         for roi in rois:
