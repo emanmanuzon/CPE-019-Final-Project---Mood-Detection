@@ -47,11 +47,11 @@ if file is not None:
         # Make predictions for each detected face
         for roi in rois:
             roi_gray = cv2.resize(roi, (48, 48), interpolation=cv2.INTER_AREA)
-            roi_gray = roi_gray.astype('float') / 255.0
-            roi_gray = np.expand_dims(roi_gray, axis=0)
+            img=np.asarray(roi_gray)
+            img_reshape=img[np.newaxis,...]
             string="OUTPUT : "
             st.success(string)
-            prediction = model.predict(roi_gray)
+            prediction = model.predict(img_reshape)
             label = emotion_labels[prediction.argmax()]
             label_position = (x, y - 10)
             cv2.putText(image, label, label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
