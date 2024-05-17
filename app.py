@@ -36,6 +36,18 @@ def detect_faces(image):
     
     return image, len(faces), rois
 
+def import_and_predict(image_data, classifier):
+    # Convert NumPy arra
+    image = Image.fromarray(image_data)
+    
+    image = image.resize((48,48))
+    img_array = img_to_array(image)
+    img_array = np.expand_dims(img_array, axis=0)
+    
+    # Make prediction
+    prediction = classifier.predict(img_array)
+    
+    return prediction
 
 if file is not None:
     # Read the uploaded image
@@ -51,5 +63,8 @@ if file is not None:
     st.image(image_with_faces, channels="BGR", caption=f'Image with {num_faces} face(s) detected')
 
     # Display the ROIs of the detected faces
+    for i, roi in enumerate(rois):
+        st.image(roi, channels="BGR", caption=f'Region of Interest {i+1}')
+
     for i, roi in enumerate(rois):
         st.image(roi, channels="BGR", caption=f'Region of Interest {i+1}')
