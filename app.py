@@ -36,7 +36,7 @@ def detect_faces(image):
         roi = image[y:y+h, x:x+w]
         rois.append(roi)
     
-    return image, len(faces), rois
+    return image, faces, rois
 
 def import_and_predict(image_data, model):
     # Convert NumPy arra
