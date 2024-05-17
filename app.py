@@ -49,7 +49,7 @@ if file is not None:
             roi_gray = cv2.resize(roi, (48, 48), interpolation=cv2.INTER_AREA)
             roi_gray = roi_gray.astype('float') / 255.0
             roi_gray = np.expand_dims(roi_gray, axis=0)
-            String="Successful"
+            string="OUTPUT : "
             st.success(string)
             prediction = model.predict(roi_gray)
             label = emotion_labels[prediction.argmax()]
