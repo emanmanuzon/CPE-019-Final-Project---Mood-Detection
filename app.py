@@ -19,7 +19,7 @@ if file is not None:
 
     
 
-    model = load_model('model (1).h5')
+    model = load_model('emotion_model1.h5')
 
     image_data=Image.open(file)
     st.image(image_data, channels="BGR", caption='Original Image')
