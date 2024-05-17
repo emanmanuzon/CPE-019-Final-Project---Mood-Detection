@@ -19,8 +19,7 @@ if file is not None:
 
     
 
-    model = load_model('CNN_Model_7.h5')
-
+    model=tf.keras.models.load_model('CNN_Model_7.h5')
     image_data=Image.open(file)
     st.image(image_data, channels="BGR", caption='Original Image')
     size=(100,100)
