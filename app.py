@@ -7,17 +7,11 @@ from tensorflow import keras
 from keras.models import model_from_json
 from keras.preprocessing.image import img_to_array
 
-
-# load model
-emotion_dict = {0:'angry', 1 :'happy', 2: 'neutral', 3:'sad', 4: 'surprise'}
-# load json and create model
-json_file = open('emotion_model1.json', 'r')
-loaded_model_json = json_file.read()
-json_file.close()
-classifier = model_from_json(loaded_model_json)
-
-# load weights into new model
-classifier.load_weights("emotion_model1.h5")
+@st.cache_data(experimental_allow_widgets=True)
+def load_model():
+  model=tf.keras.models.load_model('emotion_model1.h5')
+  return model
+model=load_model()
 
 # Function to detect faces in an image
 def detect_faces(image):
@@ -39,7 +33,7 @@ def detect_faces(image):
     
     return image, len(faces), rois
 
-def import_and_predict(image_data, classifier):
+def import_and_predict(image_data, model):
     # Convert NumPy arra
     image = Image.fromarray(image_data)
     
@@ -48,7 +42,7 @@ def import_and_predict(image_data, classifier):
     img_array = np.expand_dims(img_array, axis=0)
     
     # Make prediction
-    prediction = classifier.predict(img_array)
+    prediction = model.predict(img_array)
     
     return prediction
 
@@ -76,4 +70,4 @@ if file is not None:
 
     for i, roi in enumerate(rois):
         # Make prediction for the ROI
-        prediction = import_and_predict(roi, classifier)
+        prediction = import_and_predict(roi, model)
