@@ -22,6 +22,9 @@ if file is not None:
 
     st.image(image, channels="BGR", caption='Original Image')
 
+    model = load_model('model (1).h5')
+
+
 
 
 
