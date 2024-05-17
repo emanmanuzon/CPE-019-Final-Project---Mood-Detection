@@ -10,13 +10,13 @@ from keras.preprocessing.image import img_to_array
 
 mood_dict = {0:'angry', 1 :'happy', 2: 'neutral', 3:'sad'}
 # load json and create model
-json_file = open('moodmodel2.json', 'r')
+json_file = open('emotion_model1.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 classifier = model_from_json(loaded_model_json)
 
 # load weights into new model
-classifier.load_weights("moodmodel2.h5")
+classifier.load_weights("emotion_model1.h5")
 
 # Function to detect faces in an image
 def detect_faces(image):
