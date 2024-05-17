@@ -11,3 +11,19 @@ st.write("""
 )
 file=st.file_uploader("Choose photo from the computer",type=["jpg","png"])
 
+if file is not None:
+    # Read the uploaded image
+    image = cv2.imdecode(np.frombuffer(file.read(), np.uint8), -1)  # Use np.frombuffer to handle binary data
+
+    # Display the original image
+    st.image(image, channels="BGR", caption='Original Image')
+
+    # Detect faces in the image
+    image_with_faces, num_faces, rois = detect_faces(image)
+
+    # Display the image with detected faces
+    st.image(image_with_faces, channels="BGR", caption=f'Image with {num_faces} face(s) detected')
+
+    # Display the ROIs of the detected faces
+    for i, roi in enumerate(rois):
+        st.image(roi, channels="BGR", caption=f'Region of Interest {i+1}')
