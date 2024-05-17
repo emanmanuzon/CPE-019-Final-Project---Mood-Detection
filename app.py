@@ -19,14 +19,10 @@ if file is not None:
     face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
     # Read the uploaded image
-    image=Image.open(file)
-
-    numpy_image = np.array(image)
-    if numpy_image.shape[-1] == 4:
-        numpy_image = numpy_image[:, :, :3]
+    image = cv2.imdecode(np.frombuffer(file.read(), np.uint8), -1)
 
     # Convert the image to grayscale
-    gray_image = cv2.cvtColor(numpy_image, cv2.COLOR_BGR2GRAY)
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Detect faces in the grayscale image
     faces = face_classifier.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
