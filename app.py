@@ -21,8 +21,10 @@ if file is not None:
     # Read the uploaded image
     image=Image.open(file)
 
+    numpy_image = np.array(image)
+
     # Convert the image to grayscale
-    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    gray_image = cv2.cvtColor(numpy_image, cv2.COLOR_BGR2GRAY)
 
     # Detect faces in the grayscale image
     faces = face_cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
