@@ -17,6 +17,8 @@ st.write("""
 )
 file=st.file_uploader("Choose photo from the computer",type=["jpg","png"])
 
+emotion_labels = ['Angry','Disgust','Fear','Happy','Neutral', 'Sad', 'Surprise']
+
 def detect_faces(image):
     # Load the pre-trained face detector
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
@@ -61,13 +63,12 @@ if file is not None:
     # Display the image with detected faces
     st.image(image_with_faces, channels="BGR", caption=f'Image with {num_faces} face(s) detected')
 
-    # Display the ROIs of the detected faces
-    for i, roi in enumerate(rois):
-        st.image(roi, channels="BGR", caption=f'Region of Interest {i+1}')
+    if rois:
+        model = load_model()
+        for (x, y, w, h), roi in zip(faces, rois):
+            prediction = import_and_predict(roi, model)
+            label = emotion_labels[prediction.argmax()]
+            label_position = (x, y - 10)
+            cv2.putText(image_with_faces, label, label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
-   for i, roi in enumerate(rois):
-        # Make prediction for the ROI
-        prediction = import_and_predict(roi, model)
-        label=emotion_labels[prediction.argmax()]
-        label_position = (x,y)
-        cv2.putText(frame,label,label_position,cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
+        st.image(image_with_faces, channels="BGR", caption='Image with Predicted Emotions')
