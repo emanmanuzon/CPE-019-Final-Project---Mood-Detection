@@ -36,7 +36,7 @@ def detect_faces(image):
     
     return image, len(faces), rois
 
-def import_and_predict(image_data, classifier):
+def import_and_predict(image_data, model):
     # Convert NumPy arra
     image = Image.fromarray(image_data)
     
@@ -45,8 +45,7 @@ def import_and_predict(image_data, classifier):
     img_array = np.expand_dims(img_array, axis=0)
     
     # Make prediction
-    prediction = classifier.predict(img_array)
-    
+    prediction = model.predict(roi)[0]
     return prediction
 
 if file is not None:
@@ -66,5 +65,9 @@ if file is not None:
     for i, roi in enumerate(rois):
         st.image(roi, channels="BGR", caption=f'Region of Interest {i+1}')
 
-    for i, roi in enumerate(rois):
-        st.image(roi, channels="BGR", caption=f'Region of Interest {i+1}')
+   for i, roi in enumerate(rois):
+        # Make prediction for the ROI
+        prediction = import_and_predict(roi, model)
+        label=emotion_labels[prediction.argmax()]
+        label_position = (x,y)
+        cv2.putText(frame,label,label_position,cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
