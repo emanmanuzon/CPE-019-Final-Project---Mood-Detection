@@ -22,6 +22,8 @@ if file is not None:
     image=Image.open(file)
 
     numpy_image = np.array(image)
+    if numpy_image.shape[-1] == 4:
+        numpy_image = numpy_image[:, :, :3]
 
     # Convert the image to grayscale
     gray_image = cv2.cvtColor(numpy_image, cv2.COLOR_BGR2GRAY)
