@@ -17,11 +17,12 @@ emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surpri
 if file is not None:
     face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
-    st.image(image, channels="BGR", caption='Original Image')
+    
 
     model = load_model('model (1).h5')
 
     image=Image.open(file)
+    st.image(image, channels="BGR", caption='Original Image')
     size=(48,48)
     image=ImageOps.fit(image_data,size)
     img=np.asarray(image)
