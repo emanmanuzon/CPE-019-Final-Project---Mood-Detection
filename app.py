@@ -36,7 +36,7 @@ def detect_faces(image):
         roi = image[y:y+h, x:x+w]
         rois.append(roi)
     
-    return image, faces, rois
+    return image, len(faces), faces, rois
 
 def import_and_predict(image_data, model):
     # Convert NumPy arra
@@ -58,7 +58,7 @@ if file is not None:
     st.image(image, channels="BGR", caption='Original Image')
 
     # Detect faces in the image
-    image_with_faces, faces, rois = detect_faces(image)
+    image_with_faces, num_faces, faces, rois = detect_faces(image)
 
     # Display the image with detected faces
     st.image(image_with_faces, channels="BGR", caption=f'Image with {num_faces} face(s) detected')
