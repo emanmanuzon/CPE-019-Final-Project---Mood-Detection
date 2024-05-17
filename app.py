@@ -38,8 +38,8 @@ def detect_faces(image):
     
     return image, len(faces), faces, rois
 
-def import_and_predict(roi, model):
-    roi_gray = cv2.resize(roi_gray,(48,48),interpolation=cv2.INTER_AREA)
+def import_and_predict(rois, model):
+    roi_gray = cv2.resize(rois,(48,48),interpolation=cv2.INTER_AREA)
     roi = roi_gray.astype('float')/255.0
     roi = img_to_array(roi)
     roi = np.expand_dims(roi,axis=0)
