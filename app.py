@@ -12,9 +12,11 @@ st.write("""
 # Weather Detection System"""
 )
 
-file=st.file_uploader("Choose weather photo from computer",type=["jpg","png"])
+file = st.file_uploader("Choose photo from the computer", type=["jpg", "png"])
 
-If file is not None:
+emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise']
+
+if file is not None:
     image = Image.open(file)
     image = image.resize((48, 48))  # Resize to the input size the model expects
     image = img_to_array(image)  # Convert the image to an array
