@@ -46,7 +46,7 @@ else:
 
         if len(faces) == 0:
             st.image(image, channels="BGR", caption='Original Image')
-            st.markdown("<p style='font-size: 20px; color: red;'>No faces detected in the image.</p>", unsafe_allow_html=True)
+            st.text_area(label='No faces detected in the image.', height=50, style="font-size: 20px; color: red;")
         else:
             for (x, y, w, h) in faces:
                 roi = image[y:y + h, x:x + w]
