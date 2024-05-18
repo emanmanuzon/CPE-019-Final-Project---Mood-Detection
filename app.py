@@ -25,14 +25,22 @@ else:
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     faces = face_cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
-    rois = []
+    
     for (x, y, w, h) in faces:
         cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
-        roi = image[y:y + h, x:x + w]
-        rois.append(roi)
 
     st.image(image, channels="BGR", caption=f'Image with {len(faces)} face(s) detected')
 
+    rois = []
+    for (x, y, w, h) in faces:
+        roi = image[y:y + h, x:x + w]
+        roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)  # Convert to RGB
+        roi_pil = Image.fromarray(roi)
+        roi_resized = ImageOps.fit(roi_pil, (48, 48))
+        roi_array = np.asarray(roi_resized)
+        roi_reshaped = roi_array[np.newaxis, ...]
+        rois.append(roi_reshaped)
+    
     #image=Image.open(file)
     #st.image(image,use_column_width=True)
     #size=(48,48)
