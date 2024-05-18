@@ -36,8 +36,6 @@ else:
             image = cv2.imdecode(np.frombuffer(file.read(), np.uint8), -1)
         elif option == 'Take a picture':
             image = cv2.imdecode(np.frombuffer(file.getvalue(), np.uint8), -1)
-        
-        st.image(image, channels="BGR", caption='Original Image')
 
         gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
