@@ -46,19 +46,22 @@ else:
 
         mood_labels = ['Angry', 'Happy', 'Neutral', 'Sad']
 
-        for (x, y, w, h) in faces:
-            roi = image[y:y + h, x:x + w]
-            roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)  # Convert to RGB
-            roi_pil = Image.fromarray(roi)
-            roi_resized = ImageOps.fit(roi_pil, (48, 48))
-            roi_array = np.asarray(roi_resized)
-            roi_reshaped = roi_array[np.newaxis, ...]
+        if len(faces) == 0:
+            st.image(image, channels="BGR", caption='Original Image')
+        else:
+            for (x, y, w, h) in faces:
+                roi = image[y:y + h, x:x + w]
+                roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)  # Convert to RGB
+                roi_pil = Image.fromarray(roi)
+                roi_resized = ImageOps.fit(roi_pil, (48, 48))
+                roi_array = np.asarray(roi_resized)
+                roi_reshaped = roi_array[np.newaxis, ...]
 
-            prediction = model.predict(roi_reshaped)
-            label = mood_labels[prediction.argmax()]
+                prediction = model.predict(roi_reshaped)
+                label = mood_labels[prediction.argmax()]
 
-            label_position = (x, y - 10)
-            cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
-            cv2.putText(image, label, label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+                label_position = (x, y - 10)
+                cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+                cv2.putText(image, label, label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
-        st.image(image, channels="BGR", caption=f'Image with {len(faces)} face(s) detected and labeled')
+            st.image(image, channels="BGR", caption=f'Image with {len(faces)} face(s) detected and labeled')
