@@ -64,3 +64,7 @@ else:
                 cv2.putText(image, label, label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
             st.image(image, channels="BGR", caption=f'Image with {len(faces)} face(s) detected and labeled')
+
+            st.write("Summary of Detected Faces:")
+            mood_counts = {mood: detected_faces.count(mood) for mood in mood_labels}
+            st.table(mood_counts)
