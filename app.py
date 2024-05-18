@@ -11,9 +11,9 @@ def load_model():
 
 model = load_model()
 
-st.write("""
-# Mood Classifier
-""")
+st.title("Mood Classifier")
+
+st.write("😠 Angry", "😃 Happy", "😐 Neutral", "😢 Sad")
 
 option = st.selectbox(
     'How would you like to provide the image?',
