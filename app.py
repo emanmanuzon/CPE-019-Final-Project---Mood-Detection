@@ -9,7 +9,7 @@ def load_keras_model():
     return model
 model = load_keras_model()
 st.write("""
-# Weather Detection System"""
+# Mood Classifier"""
 )
 
 file = st.file_uploader("Choose photo from the computer", type=["jpg", "png"])
