@@ -7,7 +7,7 @@ from keras.optimizers import Adam
 from PIL import Image
 
 
-model=tf.keras.models.load_model('CNN_Model_7.h5')
+model=load_model('CNN_Model_7.h5')
 
 st.write("""
 # Mood Classifier"""
