@@ -75,5 +75,5 @@ else:
             display_rois = st.checkbox("Display Regions of Interest (ROIs)")
             if display_rois:
                 for (x, y, w, h) in faces:
-                roi = image[y:y + h, x:x + w]
-                st.image(roi, channels="BGR", caption='ROI')
+                    roi = image[y:y + h, x:x + w]
+                    st.image(roi, channels="BGR", caption='ROI')
