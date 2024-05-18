@@ -9,7 +9,7 @@ from PIL import Image
 
 model=tf.keras.models.load_model('CNN_Model_7.h5')
 model.compile(loss='categorical_crossentropy',
-              optimizer = Adam(lr=0.001),
+              optimizer = Adam(learning_rate=0.001),
               metrics=['accuracy'])
 st.write("""
 # Mood Classifier"""
