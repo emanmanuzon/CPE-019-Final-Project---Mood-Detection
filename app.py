@@ -25,13 +25,9 @@ else:
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     faces = face_cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+
+    mood_labels = ['Angry', 'Happy', 'Neutral', 'Sad']
     
-    for (x, y, w, h) in faces:
-        cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
-
-    st.image(image, channels="BGR", caption=f'Image with {len(faces)} face(s) detected')
-
-    rois = []
     for (x, y, w, h) in faces:
         roi = image[y:y + h, x:x + w]
         roi = cv2.cvtColor(roi, cv2.COLOR_BGR2RGB)  # Convert to RGB
@@ -39,7 +35,15 @@ else:
         roi_resized = ImageOps.fit(roi_pil, (48, 48))
         roi_array = np.asarray(roi_resized)
         roi_reshaped = roi_array[np.newaxis, ...]
-        rois.append(roi_reshaped)
+
+        prediction = model.predict(roi_reshaped)
+        label = mood_labels[prediction.argmax()]
+
+        label_position = (x, y - 10)
+        cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        cv2.putText(image, label, label_position, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+
+    st.image(image, channels="BGR", caption=f'Image with {len(faces)} face(s) detected and labeled')
     
     #image=Image.open(file)
     #st.image(image,use_column_width=True)
