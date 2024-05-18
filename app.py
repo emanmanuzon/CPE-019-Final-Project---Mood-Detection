@@ -5,7 +5,7 @@ from tensorflow.keras.preprocessing.image import img_to_array, load_img
 from PIL import Image
 
 def load_keras_model():
-    model = load_model('model.h5')
+    model = load_model('emotion_model1.h5')
     return model
 model = load_keras_model()
 st.write("""
