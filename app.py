@@ -17,7 +17,7 @@ st.write("😠 Angry", "😃 Happy", "😐 Neutral", "😢 Sad")
 
 option = st.selectbox(
     'How would you like to provide the image?',
-    ('-','Upload a file', 'Take a picture')
+    ('Upload a file', 'Take a picture')
 )
 
 file = None
