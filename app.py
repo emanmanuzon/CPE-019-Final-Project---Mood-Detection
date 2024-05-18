@@ -43,6 +43,7 @@ else:
         faces = face_cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
 
         mood_labels = ['Angry', 'Happy', 'Neutral', 'Sad']
+        detected_faces = []
 
         if len(faces) == 0:
             st.image(image, channels="BGR", caption='Original Image')
