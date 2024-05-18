@@ -30,6 +30,7 @@ elif option == 'Take a picture':
 if file is None:
     st.text("Please upload an image file or take a picture")
 else:
+    st.text("Image successfully loaded!")
     if st.button("Detect Faces and Predict Mood"):
         if option == 'Upload a file':
             image = cv2.imdecode(np.frombuffer(file.read(), np.uint8), -1)
