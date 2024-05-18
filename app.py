@@ -24,6 +24,6 @@ else:
     img=np.asarray(image)
     img_reshape=img[np.newaxis,...]
     prediction=model.predict(img_reshape)
-    class_names=['Cloudy', 'Rain', 'Shine', 'Sunrise']
+    class_names=['Angry', 'Happy', 'Neutral', 'Sad']
     string="OUTPUT : "+class_names[np.argmax(prediction)]
     st.success(string)
