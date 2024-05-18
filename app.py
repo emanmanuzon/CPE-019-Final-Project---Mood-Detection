@@ -72,7 +72,7 @@ else:
             mood_counts = {mood: detected_faces.count(mood) for mood in mood_labels if mood in detected_faces}
             st.table(mood_counts)
 
-            display_rois = st.checkbox("Display Regions of Interest (ROIs)")
+            st.checkbox("Display Regions of Interest (ROIs)")
             if display_rois:
             for (x, y, w, h) in faces:
                 roi = image[y:y + h, x:x + w]
