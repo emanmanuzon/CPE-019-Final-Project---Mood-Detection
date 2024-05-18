@@ -37,6 +37,8 @@ else:
         roi_reshaped = roi_array[np.newaxis, ...]
 
         prediction = model.predict(roi_reshaped)
+        string=np.argmax(prediction)
+        st.success(string)
         label = mood_labels[prediction.argmax()]
 
         label_position = (x, y - 10)
