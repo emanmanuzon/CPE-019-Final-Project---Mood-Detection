@@ -26,7 +26,11 @@ if file is None:
 else:
     image=Image.open(file)
     st.image(image,use_column_width=True)
-    prediction=import_and_predict(image,model)
+    size=(48,48)
+    image=ImageOps.fit(image,size)
+    img=np.asarray(image)
+    img_reshape=img[np.newaxis,...]
+    prediction=model.predict(img_reshape)
     class_names=['Cloudy', 'Rain', 'Shine', 'Sunrise']
     string="OUTPUT : "+class_names[np.argmax(prediction)]
     st.success(string)
