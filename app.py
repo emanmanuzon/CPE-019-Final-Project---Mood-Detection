@@ -69,5 +69,7 @@ else:
             st.image(image, channels="BGR", caption=f'Image with {len(faces)} face(s) detected and labeled')
 
             st.write("Summary of Detected Faces:")
-            mood_counts = {mood: detected_faces.count(mood) for mood in mood_labels}
+            mood_counts = {mood: 0 for mood in mood_labels}  # Initialize mood counts with zeros
+            for mood in detected_faces:
+                mood_counts[mood] += 1
             st.table(mood_counts)
