@@ -46,6 +46,7 @@ else:
 
         if len(faces) == 0:
             st.image(image, channels="BGR", caption='Original Image')
+            st.write("No faces detected in the image.")
         else:
             for (x, y, w, h) in faces:
                 roi = image[y:y + h, x:x + w]
