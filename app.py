@@ -7,7 +7,7 @@ def load_model():
   return model
 model=load_model()
 st.write("""
-# Weather Detection System"""
+# Mood Classification"""
 )
 file=st.file_uploader("Choose weather photo from computer",type=["jpg","png"])
 
